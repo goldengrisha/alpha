@@ -1,12 +1,13 @@
 Step 1: Identify the API and data schema
-First, you need to identify the API you will be pulling data from and the schema of the JSON data. This will help you identify which data needs to be extracted from the API and how it should be mapped to the data lake and data warehouse.
+First, you need to identify the API you will be pulling data from and the schema of the JSON data. 
+This will help you identify which data needs to be extracted from the API and how it should be mapped to the data lake and data warehouse.
 
 Step 2: Define the pipeline architecture
 Next, you need to define the pipeline architecture. A typical pipeline architecture for this use case might look like this:
-
 Data Extraction - The pipeline extracts the data from the API in JSON format.
 Data Transformation - The pipeline transforms the data into a format suitable for the data lake and data warehouse.
 Data Loading - The pipeline loads the transformed data into the data lake and data warehouse.
+
 Step 3: Choose the libraries and tools
 For this pipeline, you could use Python as the primary programming language and the following libraries and tools:
 
