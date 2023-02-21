@@ -10,12 +10,12 @@ Data Loading - The pipeline loads the transformed data into the data lake and da
 
 Step 3: Choose the libraries and tools
 For this pipeline, you could use Python as the primary programming language and the following libraries and tools:
-
 Requests - For making HTTP requests to the API.
 PySpark - For data transformation and loading into the data lake and data warehouse.
 Apache Airflow - For scheduling and monitoring the pipeline.
 AWS S3 - For the data lake storage.
 AWS Redshift - For the data warehouse.
+
 Step 4: Handle functional requirements
     a. To extract just the needed data from the API, you can use the date interval parameter provided by the API
     b. To make the code re-runnable (idempotent), you can use a unique identifier for each record in the data lake and data warehouse to prevent duplicates from being added.
