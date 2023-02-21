@@ -1,0 +1,27 @@
+Functional:
+a. I would use AWS glue for the current task but pure spark or dask can be the best for retrieving and processing the JSON data between intervals.
+b. As it's JSON data between intervals. 
+I don't need `idempotent` due to (Being able to obtain just the needed data from the AP). 
+But in any case, the glue has the possibility to use this functionality out of the box.
+c. Spark has a pretty big variation of output sources.
+d. I would create 2 functions, the first for retrieving and inserting JSON data into the data lake.
+For appending or adding new files I would use the date as the file name. 
+The second is for transforming the data to be fitted into the data warehouse.
+For appending or adding I would use insert and update.
+
+Non-Functional:
+a. Spark code be: 
+    - supports different clusters:
+        Standalone 
+        Apache Mesos
+        Hadoop YARN 
+        Kubernetes 
+    - supports different formats, not just JSON
+    - supports different types of storage
+b. 
+c. Spark is easy to test due to its functional nature and strict structure.
+d. Spark has a great possibility to work and represents data as df which is common for the modern framework.
+e. Spark is Fault Tolerance and highly available
+c. Logging cases in Apache Spark:
+    - Log4j
+    - Writing custom logger
