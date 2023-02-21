@@ -1,27 +1,30 @@
-Functional:
-a. I would use AWS glue for the current task but pure spark or dask can be the best for retrieving and processing the JSON data between intervals.
-b. As it's JSON data between intervals. 
-I don't need `idempotent` due to (Being able to obtain just the needed data from the AP). 
-But in any case, the glue has the possibility to use this functionality out of the box.
-c. Spark has a pretty big variation of output sources.
-d. I would create 2 functions, the first for retrieving and inserting JSON data into the data lake.
-For appending or adding new files I would use the date as the file name. 
-The second is for transforming the data to be fitted into the data warehouse.
-For appending or adding I would use insert and update.
+Step 1: Identify the API and data schema
+First, you need to identify the API you will be pulling data from and the schema of the JSON data. This will help you identify which data needs to be extracted from the API and how it should be mapped to the data lake and data warehouse.
 
-Non-Functional:
-a. Spark code be: 
-    - supports different clusters:
-        Standalone 
-        Apache Mesos
-        Hadoop YARN 
-        Kubernetes 
-    - supports different formats, not just JSON
-    - supports different types of storage
-b. 
-c. Spark is easy to test due to its functional nature and strict structure.
-d. Spark has a great possibility to work and represents data as df which is common for the modern framework.
-e. Spark is Fault Tolerance and highly available
-c. Logging cases in Apache Spark:
-    - Log4j
-    - Writing custom logger
+Step 2: Define the pipeline architecture
+Next, you need to define the pipeline architecture. A typical pipeline architecture for this use case might look like this:
+
+Data Extraction - The pipeline extracts the data from the API in JSON format.
+Data Transformation - The pipeline transforms the data into a format suitable for the data lake and data warehouse.
+Data Loading - The pipeline loads the transformed data into the data lake and data warehouse.
+Step 3: Choose the libraries and tools
+For this pipeline, you could use Python as the primary programming language and the following libraries and tools:
+
+Requests - For making HTTP requests to the API.
+PySpark - For data transformation and loading into the data lake and data warehouse.
+Apache Airflow - For scheduling and monitoring the pipeline.
+AWS S3 - For the data lake storage.
+AWS Redshift - For the data warehouse.
+Step 4: Handle functional requirements
+    a. To extract just the needed data from the API, you can use the date interval parameter provided by the API
+    b. To make the code re-runnable (idempotent), you can use a unique identifier for each record in the data lake and data warehouse to prevent duplicates from being added.
+    c. To store data in the data lake, you can use AWS S3 or any other storage system. For loading data into the data warehouse, you can use AWS Redshift or any other database system.
+    d. To append or replace data in both tables, you can use the append and overwrite options available in PySpark when writing data to the data lake and data warehouse.
+
+Step 5: Handle non-functional requirements
+    a. To make the pipeline generalizable, you can use configuration files to store the API URL, data lake and warehouse connection details, and other pipeline configurations.
+    b. To make the pipeline reusable, you can use modular code design, such as functions and classes, so that different parts of the pipeline can be reused in other pipelines.
+    c. To ensure testability, you can write unit tests for each function or module in the pipeline. Integration tests can also be run against the entire pipeline to ensure that it is working as expected.
+    d. To ensure readability, you can follow a consistent coding style and use comments to explain complex code.
+    e. To handle failure management, you can use retry logic to handle failed API requests and failed data lake and warehouse writes. You can also set up alerts and monitoring to detect any pipeline failures.
+    f. To ensure logging, you can use a logging library, such as Python's built-in logging library, to log pipeline events and errors. The logs can be stored in a centralized location for easy access and analysis.
